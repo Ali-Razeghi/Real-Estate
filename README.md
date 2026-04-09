@@ -7,7 +7,7 @@ This project demonstrates front-end development skills with a focus on UI/UX des
 
 ## Live Demo
 
-()
+https://luxevista-realty-ali.netlify.app/
 
 ---
 
