@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LuxeVista Realty - premium real estate website demo with featured listings, property search, agents, testimonials, neighborhood highlights, and consultation form." />
+  <meta name="theme-color" content="#0e1726" />
+  <title>LuxeVista Realty | Premium Real Estate</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f9fbff;
+      --text: #152238;
+      --muted: #66758c;
+      --dark: #0e1726;
+      --dark-2: #0a1220;
+      --primary: #1f4fd6;
+      --primary-2: #3568f4;
+      --accent: #c8a96b;
+      --accent-2: #b9934e;
+      --success: #0b7a54;
+      --border: #e4eaf3;
+      --shadow: 0 18px 40px rgba(15, 23, 38, 0.08);
+      --shadow-soft: 0 10px 24px rgba(15, 23, 38, 0.05);
+      --radius: 22px;
+      --max-width: 1220px;
+      --transition: 0.28s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: auto;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 46px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12;
+      color: var(--dark);
+      margin: 14px 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(31, 79, 214, 0.08);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: 1px solid rgba(31, 79, 214, 0.1);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 22px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 14px 28px rgba(31, 79, 214, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(31, 79, 214, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15, 23, 38, 0.04);
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, #0c1625, #162947);
+      color: rgba(255,255,255,0.86);
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      min-height: 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(14, 23, 38, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    nav {
+      min-height: 82px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.7rem;
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.88);
+      font-weight: 600;
+      font-size: 0.96rem;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        radial-gradient(circle at top right, rgba(200,169,107,0.12), transparent 32%),
+        linear-gradient(rgba(10, 17, 29, 0.62), rgba(10, 17, 29, 0.68)),
+        url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+      width: 100%;
+      padding: 130px 0 84px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.9rem, 5vw, 5.3rem);
+      line-height: 1.02;
+      margin: 18px 0;
+      max-width: 760px;
+      text-shadow: 0 8px 20px rgba(0,0,0,0.32);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      font-size: 1.08rem;
+      max-width: 650px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: 14px 16px;
+      min-width: 140px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.35rem;
+    }
+
+    .hero-stat span {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .hero-panel {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 24px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.16);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-panel h3 {
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-panel p {
+      color: rgba(255,255,255,0.86);
+      margin-bottom: 20px;
+    }
+
+    .search-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .hero-panel input,
+    .hero-panel select {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .trust-strip {
+      margin-top: -34px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .trust-strip .card {
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 6px 0;
+    }
+
+    .trust-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(31,79,214,0.08);
+      color: var(--primary);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .trust-item strong {
+      display: block;
+      color: var(--dark);
+      margin-bottom: 2px;
+      font-size: 0.98rem;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .about-grid,
+    .contact-grid,
+    .feature-grid,
+    .community-grid,
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-card,
+    .contact-panel,
+    .contact-form,
+    .feature-panel,
+    .community-card,
+    .cta-card {
+      padding: 34px;
+    }
+
+    .about-card h3,
+    .feature-panel h3,
+    .contact-panel h3,
+    .contact-form h3,
+    .cta-card h3 {
+      font-size: 1.9rem;
+      line-height: 1.18;
+      margin: 14px 0;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+
+    .about-card p,
+    .feature-panel p,
+    .contact-panel p,
+    .contact-form p,
+    .cta-card p,
+    .community-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .feature-list,
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .feature-item,
+    .contact-item {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+
+    .feature-item strong,
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--dark);
+    }
+
+    .about-image,
+    .feature-image {
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    .about-image img,
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 520px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 24px 18px;
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(15,23,38,0.04);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .listing-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .listing-grid,
+    .services-grid,
+    .agents-grid,
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .listing-card,
+    .service-card,
+    .agent-card,
+    .testimonial-card {
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .listing-card:hover,
+    .service-card:hover,
+    .agent-card:hover,
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .listing-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .listing-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .listing-card:hover .listing-image img {
+      transform: scale(1.05);
+    }
+
+    .listing-badge,
+    .listing-price {
+      position: absolute;
+      top: 18px;
+      z-index: 2;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .listing-badge {
+      left: 18px;
+      background: rgba(14, 23, 38, 0.86);
+      color: white;
+    }
+
+    .listing-price {
+      right: 18px;
+      background: white;
+      color: var(--dark);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .listing-content,
+    .service-card,
+    .agent-content,
+    .testimonial-card {
+      padding: 24px;
+    }
+
+    .listing-content h3,
+    .service-card h3,
+    .agent-content h3 {
+      font-size: 1.22rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .listing-content p,
+    .service-card p,
+    .agent-content p,
+    .testimonial-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .property-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .property-location {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .listing-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .service-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(31,79,214,0.08);
+      color: var(--primary);
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+    }
+
+    .community-card {
+      min-height: 100%;
+    }
+
+    .community-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .community-meta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-top: 12px;
+    }
+
+    .agent-image {
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .agent-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .agent-role {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .agent-contact {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .stars {
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-author {
+      margin-top: 16px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .faq-grid {
+      display: grid;
+      gap: 16px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .faq-item {
+      padding: 22px 24px;
+      cursor: pointer;
+    }
+
+    .faq-item button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border: none;
+      font-size: 1.03rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--muted);
+      padding-top: 0;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 220px;
+      padding-top: 14px;
+    }
+
+    .contact-panel,
+    .contact-form {
+      min-height: 100%;
+    }
+
+    .contact-form form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 14px;
+      border: 1px solid #d8dfeb;
+      background: white;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-2);
+      box-shadow: 0 0 0 4px rgba(53, 104, 244, 0.1);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    .cta-banner {
+      background:
+        linear-gradient(135deg, rgba(14, 23, 38, 0.95), rgba(28, 43, 72, 0.94)),
+        url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      border-radius: 28px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-grid {
+      gap: 24px;
+    }
+
+    .cta-banner h3 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12;
+      margin: 14px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-banner p {
+      color: rgba(255,255,255,0.86);
+      margin-bottom: 20px;
+      max-width: 640px;
+    }
+
+    .cta-points {
+      display: grid;
+      gap: 12px;
+    }
+
+    .cta-point {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .cta-point strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.82);
+      padding: 38px 0;
+      margin-top: 38px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.8fr 0.8fr 0.9fr;
+      gap: 24px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 12px;
+      font-size: 1.04rem;
+    }
+
+    footer p,
+    footer a {
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-bottom {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: var(--dark);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      display: none;
+      z-index: 999;
+    }
+
+    .back-to-top.show {
+      display: block;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .feature-grid,
+      .community-grid,
+      .cta-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid,
+      .trust-strip .card {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 82px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 18px 4%;
+        background: rgba(14, 23, 38, 0.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-grid {
+        padding: 110px 0 70px;
+      }
+
+      .search-row,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 74px 0;
+      }
+
+      .stats-grid,
+      .trust-strip .card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy h1 {
+        font-size: 2.55rem;
+      }
+
+      .hero-panel,
+      .about-card,
+      .feature-panel,
+      .contact-panel,
+      .contact-form,
+      .cta-banner,
+      .community-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span>Toronto premium property advisory</span>
+        <span>|</span>
+        <span>Mon–Sat 9:00 AM – 6:00 PM</span>
+      </div>
+      <div class="topbar-right">
+        <span>(416) 555-0102</span>
+        <span>info@luxevista.com</span>
+      </div>
+    </div>
+  </div>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Luxe<span>Vista</span></div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#listings">Listings</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#agents">Agents</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Premium Real Estate Website Demo</div>
+          <h1>Exceptional properties for modern living and long-term value.</h1>
+          <p>
+            LuxeVista Realty is a polished real estate portfolio website designed for agencies, brokers, and property consultants.
+            It includes a premium hero section, property search, listing filters, neighborhood highlights, agent profiles, and lead capture.
+          </p>
+          <div class="hero-actions">
+            <a href="#listings" class="btn btn-primary">Browse Listings</a>
+            <a href="#contact" class="btn btn-secondary">Book a Consultation</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>180+</strong>
+              <span>Properties listed</span>
+            </div>
+            <div class="hero-stat">
+              <strong>12</strong>
+              <span>Luxury communities</span>
+            </div>
+            <div class="hero-stat">
+              <strong>4.9/5</strong>
+              <span>Client satisfaction</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <h3>Find your next property</h3>
+          <p>Search by property type, location, and price range.</p>
+          <div class="search-grid">
+            <div class="search-row">
+              <select>
+                <option>Property Type</option>
+                <option>House</option>
+                <option>Condo</option>
+                <option>Townhouse</option>
+                <option>Penthouse</option>
+              </select>
+              <select>
+                <option>Location</option>
+                <option>Downtown</option>
+                <option>Waterfront</option>
+                <option>Suburban</option>
+                <option>Uptown</option>
+              </select>
+            </div>
+            <div class="search-row">
+              <select>
+                <option>Price Range</option>
+                <option>$500K - $800K</option>
+                <option>$800K - $1.2M</option>
+                <option>$1.2M - $2M</option>
+                <option>$2M+</option>
+              </select>
+              <select>
+                <option>Bedrooms</option>
+                <option>1+</option>
+                <option>2+</option>
+                <option>3+</option>
+                <option>4+</option>
+              </select>
+            </div>
+            <button class="btn btn-primary">Search Properties</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="container">
+      <div class="card reveal">
+        <div class="trust-item">
+          <div class="trust-icon">✔</div>
+          <div>
+            <strong>Licensed advisors</strong>
+            <span>Professional client guidance</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">📍</div>
+          <div>
+            <strong>Local market focus</strong>
+            <span>Toronto and GTA expertise</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🏆</div>
+          <div>
+            <strong>Premium listings</strong>
+            <span>Curated high-demand inventory</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🤝</div>
+          <div>
+            <strong>Client-first process</strong>
+            <span>Buying, selling, and investing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">About The Agency</div>
+        <h2>Built to present high-end real estate brands with clarity and trust</h2>
+        <p>
+          This website is designed as a realistic agency-style real estate project, suitable for portfolios, freelance proposals, and client-facing demos.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card about-card reveal">
+          <div class="eyebrow">What makes it strong</div>
+          <h3>A premium layout with practical business sections</h3>
+          <p>
+            The structure balances brand presentation with conversion-focused content. It can be adapted for brokerages, independent realtors,
+            property developers, or rental-focused agencies.
+          </p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>Professional listing presentation</strong>
+              <span>Property cards with pricing, bedrooms, bathrooms, and location metadata.</span>
+            </div>
+            <div class="feature-item">
+              <strong>Lead-generation layout</strong>
+              <span>Property search, consultation request form, and agent contact details.</span>
+            </div>
+            <div class="feature-item">
+              <strong>Portfolio-ready polish</strong>
+              <span>Modern branding, elegant color palette, and sections modeled after professional real estate sites.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card about-image reveal">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80" alt="Modern luxury home exterior" />
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <strong data-count="18">0</strong>
+          <span>Years in premium markets</span>
+        </div>
+        <div class="stat-card reveal">
+          <strong data-count="420">0</strong>
+          <span>Properties sold</span>
+        </div>
+        <div class="stat-card reveal">
+          <strong data-count="96">0</strong>
+          <span>Client referral rate</span>
+        </div>
+        <div class="stat-card reveal">
+          <strong data-count="32">0</strong>
+          <span>Partnered developers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="listings">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Featured Properties</div>
+        <h2>Selected listings with interactive category filtering</h2>
+        <p>
+          This section makes the demo more realistic and adds useful UI interaction for buyers exploring available inventory.
+        </p>
+      </div>
+
+      <div class="listing-controls reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="house">Houses</button>
+        <button class="filter-btn" data-filter="condo">Condos</button>
+        <button class="filter-btn" data-filter="luxury">Luxury</button>
+        <button class="filter-btn" data-filter="rental">Rental</button>
+      </div>
+
+      <div class="listing-grid">
+        <article class="card listing-card reveal" data-category="house">
+          <div class="listing-image">
+            <span class="listing-badge">House</span>
+            <span class="listing-price">$1,250,000</span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1200&q=80" alt="Modern detached house" />
+          </div>
+          <div class="listing-content">
+            <h3>Modern Family Residence</h3>
+            <div class="property-location">North York, Toronto</div>
+            <p>Spacious detached home with refined finishes, open-concept living, and landscaped outdoor space.</p>
+            <div class="property-meta">
+              <span>4 Beds</span>
+              <span>3 Baths</span>
+              <span>2,850 sq ft</span>
+            </div>
+            <div class="listing-actions">
+              <a href="#contact" class="btn btn-outline">Request Details</a>
+              <a href="#contact" class="btn btn-primary">Book Viewing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card listing-card reveal" data-category="condo luxury">
+          <div class="listing-image">
+            <span class="listing-badge">Luxury Condo</span>
+            <span class="listing-price">$980,000</span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="Luxury condo interior" />
+          </div>
+          <div class="listing-content">
+            <h3>Skyline View Condo</h3>
+            <div class="property-location">Downtown Toronto</div>
+            <p>High-floor residence with panoramic city views, designer kitchen, and concierge amenities.</p>
+            <div class="property-meta">
+              <span>2 Beds</span>
+              <span>2 Baths</span>
+              <span>1,180 sq ft</span>
+            </div>
+            <div class="listing-actions">
+              <a href="#contact" class="btn btn-outline">Request Details</a>
+              <a href="#contact" class="btn btn-primary">Book Viewing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card listing-card reveal" data-category="luxury house">
+          <div class="listing-image">
+            <span class="listing-badge">Luxury Estate</span>
+            <span class="listing-price">$2,950,000</span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Luxury estate home" />
+          </div>
+          <div class="listing-content">
+            <h3>Private Executive Estate</h3>
+            <div class="property-location">Richmond Hill</div>
+            <p>Architect-designed estate with premium materials, smart home features, and private outdoor retreat.</p>
+            <div class="property-meta">
+              <span>5 Beds</span>
+              <span>5 Baths</span>
+              <span>5,200 sq ft</span>
+            </div>
+            <div class="listing-actions">
+              <a href="#contact" class="btn btn-outline">Request Details</a>
+              <a href="#contact" class="btn btn-primary">Book Viewing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card listing-card reveal" data-category="rental condo">
+          <div class="listing-image">
+            <span class="listing-badge">Rental</span>
+            <span class="listing-price">$3,200/mo</span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Modern apartment interior" />
+          </div>
+          <div class="listing-content">
+            <h3>Contemporary Urban Apartment</h3>
+            <div class="property-location">Mississauga</div>
+            <p>Bright modern apartment with private balcony, upgraded kitchen, and easy transit access.</p>
+            <div class="property-meta">
+              <span>2 Beds</span>
+              <span>2 Baths</span>
+              <span>980 sq ft</span>
+            </div>
+            <div class="listing-actions">
+              <a href="#contact" class="btn btn-outline">Request Details</a>
+              <a href="#contact" class="btn btn-primary">Book Viewing</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Agency Services</div>
+        <h2>End-to-end support across buying, selling, and investment decisions</h2>
+        <p>
+          These sections help position the project as a business-grade agency site rather than a simple design exercise.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="card service-card reveal">
+          <div class="service-icon">🏠</div>
+          <h3>Residential Buying</h3>
+          <p>Personalized buyer guidance from property search to negotiation and closing support.</p>
+        </div>
+        <div class="card service-card reveal">
+          <div class="service-icon">📈</div>
+          <h3>Property Valuation</h3>
+          <p>Market-backed pricing strategies for sellers who want strong positioning and confidence.</p>
+        </div>
+        <div class="card service-card reveal">
+          <div class="service-icon">💼</div>
+          <h3>Investment Advisory</h3>
+          <p>Insights on high-demand neighborhoods, rental potential, and long-term market opportunities.</p>
+        </div>
+        <div class="card service-card reveal">
+          <div class="service-icon">🧾</div>
+          <h3>Relocation Support</h3>
+          <p>Area guidance, lifestyle matching, and transition support for families and professionals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="card feature-panel reveal">
+          <div class="eyebrow">Why clients choose us</div>
+          <h3>Local market expertise paired with premium presentation and service</h3>
+          <p>
+            The design and content of this section mirror the positioning used by trusted real estate firms: confidence, authority, and strong local knowledge.
+          </p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>Targeted neighborhood insights</strong>
+              <span>Helping buyers understand market fit, schools, commute, and long-term value.</span>
+            </div>
+            <div class="feature-item">
+              <strong>Professional property marketing</strong>
+              <span>Clean listing design, persuasive visuals, and branded presentation for premium properties.</span>
+            </div>
+            <div class="feature-item">
+              <strong>Relationship-focused service</strong>
+              <span>Consultative approach that supports first-time buyers, upsizers, investors, and sellers.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card feature-image reveal">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1400&q=80" alt="Stylish modern living room interior" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Neighborhood Highlights</div>
+        <h2>Featured communities that attract buyers and investors</h2>
+        <p>
+          Community cards improve the realism of the site and show you understand how agencies market location alongside property.
+        </p>
+      </div>
+
+      <div class="community-grid">
+        <div class="card community-card reveal">
+          <h3>Downtown Toronto</h3>
+          <p>Ideal for professionals seeking urban convenience, modern condos, and excellent transit access.</p>
+          <div class="community-meta"><span>Luxury condos</span><span>Transit rich</span><span>High demand</span></div>
+        </div>
+        <div class="card community-card reveal">
+          <h3>Richmond Hill</h3>
+          <p>Known for upscale residential streets, family-oriented neighborhoods, and long-term growth value.</p>
+          <div class="community-meta"><span>Detached homes</span><span>Schools</span><span>Suburban lifestyle</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="agents">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Meet The Team</div>
+        <h2>Experienced agents presented like a professional brokerage team</h2>
+        <p>
+          Agent profiles make the website more convincing and create stronger client trust signals.
+        </p>
+      </div>
+
+      <div class="agents-grid">
+        <article class="card agent-card reveal">
+          <div class="agent-image">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80" alt="Real estate agent portrait" />
+          </div>
+          <div class="agent-content">
+            <span class="agent-role">Senior Property Advisor</span>
+            <h3>Daniel Foster</h3>
+            <p>Specializes in luxury homes, private client representation, and strategic property acquisition.</p>
+            <div class="agent-contact">
+              <span>daniel@luxevista.com</span>
+              <span>(416) 555-0147</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card agent-card reveal">
+          <div class="agent-image">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80" alt="Real estate consultant portrait" />
+          </div>
+          <div class="agent-content">
+            <span class="agent-role">Residential Sales Consultant</span>
+            <h3>Sophia Bennett</h3>
+            <p>Works closely with buyers and sellers across family homes, townhouses, and growing suburban markets.</p>
+            <div class="agent-contact">
+              <span>sophia@luxevista.com</span>
+              <span>(647) 555-0189</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card agent-card reveal">
+          <div class="agent-image">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Investment property advisor portrait" />
+          </div>
+          <div class="agent-content">
+            <span class="agent-role">Investment Property Specialist</span>
+            <h3>Michael Hayes</h3>
+            <p>Focused on investor opportunities, rental strategy, and evaluating long-term portfolio growth.</p>
+            <div class="agent-contact">
+              <span>michael@luxevista.com</span>
+              <span>(905) 555-0211</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Client Testimonials</div>
+        <h2>Trust signals that support conversion</h2>
+        <p>
+          Testimonial sections help the design feel more commercial and increase perceived credibility.
+        </p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="card testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>The process felt organized and highly professional from the first consultation to closing. The market advice was especially valuable.</p>
+          <div class="testimonial-author">Emma R. — Home Buyer</div>
+        </div>
+        <div class="card testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>Excellent presentation, quick communication, and a strong understanding of the neighborhood. We sold with confidence.</p>
+          <div class="testimonial-author">Jason M. — Property Seller</div>
+        </div>
+        <div class="card testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>They helped us compare investment options clearly and focus on the right opportunities instead of wasting time.</p>
+          <div class="testimonial-author">Nadia L. — Investor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">FAQ</div>
+        <h2>Common questions buyers and sellers usually ask</h2>
+        <p>
+          This adds another professional layer and helps the site feel more like a complete real agency website.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="card faq-item reveal">
+          <button>
+            <span>Do you work with first-time home buyers?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. We guide first-time buyers through financing, area selection, market comparisons, negotiations, and closing preparation.</p>
+          </div>
+        </div>
+        <div class="card faq-item reveal">
+          <button>
+            <span>Can you help with both buying and selling?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Many clients work with us to sell an existing property and transition into a new purchase with a coordinated strategy.</p>
+          </div>
+        </div>
+        <div class="card faq-item reveal">
+          <button>
+            <span>Do you provide investment property advice?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. We support rental-focused and long-term portfolio buyers with neighborhood and return-oriented insights.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="card contact-panel reveal">
+          <div class="eyebrow">Contact The Agency</div>
+          <h3>Talk to an advisor about your next move</h3>
+          <p>
+            Whether you are buying, selling, relocating, or investing, LuxeVista can be positioned as a trusted local partner.
+          </p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>Office</strong>
+              <span>120 King Street West, Toronto, ON</span>
+            </div>
+            <div class="contact-item">
+              <strong>Phone</strong>
+              <span>(416) 555-0102</span>
+            </div>
+            <div class="contact-item">
+              <strong>Email</strong>
+              <span>info@luxevista.com</span>
+            </div>
+            <div class="contact-item">
+              <strong>Hours</strong>
+              <span>Mon–Sat | 9:00 AM – 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card contact-form reveal">
+          <div class="eyebrow">Consultation Form</div>
+          <h3>Request a private consultation</h3>
+          <p>Send your details and preferred property goals. A team member will follow up shortly.</p>
+          <form id="contactForm" name="consultation-form" netlify>
+            <div class="form-row">
+              <input type="text" placeholder="Full Name" required />
+              <input type="email" placeholder="Email Address" required />
+            </div>
+            <div class="form-row">
+              <input type="tel" placeholder="Phone Number" required />
+              <select required>
+                <option value="">I am interested in</option>
+                <option>Buying</option>
+                <option>Selling</option>
+                <option>Renting</option>
+                <option>Investing</option>
+              </select>
+            </div>
+            <textarea placeholder="Tell us about the type of property or service you are looking for" required></textarea>
+            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+          </form>
+          <div class="message" id="successMessage"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-grid">
+          <div>
+            <div class="eyebrow">Next Step</div>
+            <h3>Ready to position your property or search with confidence?</h3>
+            <p>
+              This section is designed as a strong final conversion block to encourage consultation requests and reinforce trust.
+            </p>
+            <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
+          </div>
+          <div class="cta-points">
+            <div class="cta-point">
+              <strong>Buyer guidance</strong>
+              <span>Property matching, offer strategy, and negotiation support.</span>
+            </div>
+            <div class="cta-point">
+              <strong>Seller strategy</strong>
+              <span>Pricing, positioning, presentation, and targeted property marketing.</span>
+            </div>
+            <div class="cta-point">
+              <strong>Investor focus</strong>
+              <span>Location evaluation, rental potential, and long-term asset planning.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>LuxeVista Realty</h4>
+          <p>Premium real estate portfolio website for agencies, brokers, and property consultants.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <a href="#about">About</a>
+          <a href="#listings">Listings</a>
+          <a href="#agents">Agents</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <a href="#services">Buying</a>
+          <a href="#services">Selling</a>
+          <a href="#services">Investing</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>120 King Street West, Toronto, ON</p>
+          <p>(416) 555-0102</p>
+          <p>info@luxevista.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 LuxeVista Realty. Portfolio demo website for real estate and property professionals.</div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const backToTop = document.getElementById('backToTop');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const revealItems = document.querySelectorAll('.reveal');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const listingCards = document.querySelectorAll('.listing-card');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
+    const stats = document.querySelectorAll('[data-count]');
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navAnchors.forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.getAttribute('data-filter');
+
+        listingCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category.includes(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    faqItems.forEach(item => {
+      const button = item.querySelector('button');
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      successMessage.textContent = 'Thank you. Your inquiry has been submitted successfully.';
+      form.reset();
+    });
+
+    function revealOnScroll() {
+      const trigger = window.innerHeight * 0.88;
+      revealItems.forEach(item => {
+        const top = item.getBoundingClientRect().top;
+        if (top < trigger) item.classList.add('visible');
+      });
+    }
+
+    function handleBackToTop() {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    }
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navAnchors.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    function animateCounter(element) {
+      const target = Number(element.getAttribute('data-count'));
+      let current = 0;
+      const increment = Math.max(1, Math.ceil(target / 80));
+      const update = () => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target + (target === 96 ? '%' : '+');
+        } else {
+          element.textContent = current;
+          requestAnimationFrame(update);
+        }
+      };
+      update();
+    }
+
+    let countersStarted = false;
+    function runCounters() {
+      const statsSection = document.querySelector('.stats-grid');
+      if (!statsSection || countersStarted) return;
+      const top = statsSection.getBoundingClientRect().top;
+      if (top < window.innerHeight * 0.9) {
+        stats.forEach(animateCounter);
+        countersStarted = true;
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      revealOnScroll();
+      handleBackToTop();
+      updateActiveNav();
+      runCounters();
+    });
+
+    revealOnScroll();
+    handleBackToTop();
+    updateActiveNav();
+    runCounters();
+  </script>
+</body>
+</html>
