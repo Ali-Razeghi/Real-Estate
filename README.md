@@ -52,13 +52,8 @@ This project is designed to showcase:
 
 ## Project Structure
 
-```
 real-estate-website/
-│
 ├── index.html
-├── style.css
-├── script.js
-├── images/
 └── README.md
 ```
 
