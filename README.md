@@ -52,13 +52,25 @@ This project is designed to showcase:
 
 ## Project Structure
 
+```
 real-estate-website/
+│
 ├── index.html
 └── README.md
 ```
 
 ---
 
+
+## Deployment
+
+This project is optimized for deployment on:
+
+* Netlify
+* GitHub Pages
+
+
+---
 
 ## Purpose
 
@@ -82,6 +94,6 @@ If you are interested in collaboration or freelance work:
 ## Notes
 
 * Images are sourced from free stock platforms (Unsplash)
-* This is a demo project and not connected to a real estate agency
+* This is a demo project and not connected to a real real estate agency
 
 ---
